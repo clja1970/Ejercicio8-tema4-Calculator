@@ -38,7 +38,9 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	TextField txtCampo1 = new TextField(20);
 	String cadena="";
 	String salida="";
-	int numero=0;
+	int operacion=0;
+	float numero1=0.0f;
+	float numero2=0.0f;
 	
 	public Calculator()
 	{
@@ -117,7 +119,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	@Override
 	public void windowClosing(WindowEvent arg0)
 	{
-		// TODO Auto-generated method stub
+		System.out.println("Cerrando Fernando...");
 		System.exit(0);
 	}
 	@Override
@@ -147,14 +149,100 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	
 	@Override
 	public void actionPerformed(ActionEvent Cal)
-	{
+	{	
+		float resultado=0;
 		if(btnBoton1.equals(Cal.getSource()))
 		{
-			txtCampo1.setText("1");
+			txtCampo1.setText(txtCampo1.getText()+"1");
+			
 		}
 		else if (btnBoton2.equals(Cal.getSource()))
 		{
-			txtCampo1.setText("2");
+			txtCampo1.setText(txtCampo1.getText()+"2");
+		}
+		else if (btnBoton3.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"3");
+		}
+		else if (btnBotonMas.equals(Cal.getSource()))
+		{
+			operacion=0;
+			numero1=(Float.parseFloat(txtCampo1.getText()));
+			txtCampo1.setText("");
+		}
+		else if (btnBoton4.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"4");
+		}
+		else if (btnBoton5.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"5");
+		}
+		else if (btnBoton6.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"6");
+		}
+		else if (btnBotonMenos.equals(Cal.getSource()))
+		{
+			operacion=1;
+			numero1=(Float.parseFloat(txtCampo1.getText()));
+			txtCampo1.setText("");
+		}
+		else if (btnBoton7.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"7");
+		}
+		else if (btnBoton8.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"8");
+		}
+		else if (btnBoton9.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"9");
+		}
+		else if (btnBotonMul.equals(Cal.getSource()))
+		{
+			operacion=2;
+			numero1=(Float.parseFloat(txtCampo1.getText()));
+			txtCampo1.setText("");
+		}
+		else if (btnBotonPunt.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText());
+		}
+		else if (btnBotonDiv.equals(Cal.getSource()))
+		{
+			operacion=3;
+			numero1=(Float.parseFloat(txtCampo1.getText()));
+			txtCampo1.setText("");
+		}
+		else if (btnBotonIgual.equals(Cal.getSource()))
+		{
+			numero2=(Float.parseFloat(txtCampo1.getText()));
+			switch(operacion)
+			{
+			case 0:
+				resultado=numero1+numero2;
+				txtCampo1.setText(Float.toString(resultado));
+				break;
+			case 1:
+				resultado=numero1-numero2;
+				txtCampo1.setText(Float.toString(resultado));
+				break;
+			case 2:
+				resultado=numero1*numero2;
+				txtCampo1.setText(Float.toString(resultado));
+				break;
+			case 3:
+				resultado=numero1/numero2;
+				txtCampo1.setText(Float.toString(resultado));
+				break;
+			}
+						
+		}
+		else if (btnBoton0.equals(Cal.getSource()))
+		{
+			txtCampo1.setText(txtCampo1.getText()+"0");
 		}
 		else
 		{
