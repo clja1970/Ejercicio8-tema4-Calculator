@@ -12,12 +12,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-
+/**
+ * 
+ * @author Anka Motz
+ * @version 1-2021
+ *
+ */
 public class Calculator extends Frame implements WindowListener, ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	Panel botonera = new Panel();
 	Panel resultado = new Panel();
+	//Añado nuevo panel borrado para meter todos los componentes del botón AC
+	Panel borrado = new Panel();
+	Button btnAc = new Button ("AC");
 	Button btnBoton1 = new Button("1");
 	Button btnBoton2 = new Button("2");
 	Button btnBoton3 = new Button("3");
@@ -41,14 +49,19 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	int operacion=0;
 	float numero1=0.0f;
 	float numero2=0.0f;
-	
+		
 	public Calculator()
 	{
-		// Establecer la distribuci�n con 4 filas y 4 columnas
+		// Establecer la distribuci�n con 4 filas y 4 columnas
 		botonera.setLayout(new GridLayout(4,4));
 		resultado.setLayout(new GridLayout(1,2));
+		//He añadido otro panel para el boton de borrar
+		borrado.setLayout(new GridLayout(1,1));
+		
 		setLayout (new BorderLayout());
 		setTitle("Calculator");
+		//añado el boton AC
+		borrado.add(btnAc);
 		botonera.add(btnBoton1);
 		botonera.add(btnBoton2);
 		botonera.add(btnBoton3);
@@ -72,6 +85,8 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		btnBotonDiv.setBackground(Color.gray);
 		resultado.add(lblEtiqueta);
 		resultado.add(txtCampo1);
+		//Action listener para el último botón
+		btnAc.addActionListener(this);
 		btnBoton1.addActionListener(this);
 		btnBoton2.addActionListener(this);
 		btnBoton3.addActionListener(this);
@@ -89,8 +104,10 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		btnBotonIgual.addActionListener(this);
 		btnBotonDiv.addActionListener(this);
 		setSize(250,300);
+		//Lo añado al panel en la posiión norte
+		add("North", borrado);
 		add("Center", botonera);
-		add("North",resultado);
+		add("South",resultado);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		addWindowListener(this);
@@ -119,8 +136,12 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	@Override
 	public void windowClosing(WindowEvent arg0)
 	{
-		System.out.println("Cerrando Fernando...");
+		//Refactorizado de la salida con un syso
+		Salida();
 		System.exit(0);
+	}
+	public void Salida() {
+		System.out.println("Dale a las Xx de la consola");
 	}
 	@Override
 	public void windowDeactivated(WindowEvent arg0)
@@ -147,11 +168,10 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent Cal)
 	{	
 		float resultado=0;
-		if(btnBoton1.equals(Cal.getSource()))
+		 if(btnBoton1.equals(Cal.getSource()))
 		{
 			txtCampo1.setText(txtCampo1.getText()+"1");
 			
@@ -165,11 +185,11 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 			txtCampo1.setText(txtCampo1.getText()+"3");
 		}
 		else if (btnBotonMas.equals(Cal.getSource()))
-		{
+			{
 			operacion=0;
 			numero1=(Float.parseFloat(txtCampo1.getText()));
 			txtCampo1.setText("");
-		}
+			}
 		else if (btnBoton4.equals(Cal.getSource()))
 		{
 			txtCampo1.setText(txtCampo1.getText()+"4");
@@ -243,6 +263,10 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		else if (btnBoton0.equals(Cal.getSource()))
 		{
 			txtCampo1.setText(txtCampo1.getText()+"0");
+		}
+		else if(Cal.getSource().equals(btnAc))
+		{//cadena vacia para que borre
+			txtCampo1.setText("");
 		}
 		else
 		{
