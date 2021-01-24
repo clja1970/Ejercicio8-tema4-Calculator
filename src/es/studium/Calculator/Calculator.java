@@ -62,6 +62,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		setTitle("Calculator");
 		//añado el boton AC
 		borrado.add(btnAc);
+		btnAc.setBackground(Color.getHSBColor(50,150,150));
 		botonera.add(btnBoton1);
 		botonera.add(btnBoton2);
 		botonera.add(btnBoton3);
@@ -228,7 +229,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		}
 		else if (btnBotonPunt.equals(Cal.getSource()))
 		{
-			txtCampo1.setText(txtCampo1.getText());
+			txtCampo1.setText(txtCampo1.getText()+".");
 		}
 		else if (btnBotonDiv.equals(Cal.getSource()))
 		{
