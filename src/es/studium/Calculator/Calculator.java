@@ -23,7 +23,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	private static final long serialVersionUID = 1L;
 	Panel botonera = new Panel();
 	Panel resultado = new Panel();
-	//Añado nuevo panel borrado para meter todos los componentes del botón AC
+	//Añado nuevo panel borrado para meter todos los componentes del bot�n AC
 	Panel borrado = new Panel();
 	Button btnAc = new Button ("AC");
 	Button btnBoton1 = new Button("1");
@@ -49,7 +49,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	int operacion=0;
 	float numero1=0.0f;
 	float numero2=0.0f;
-		
+
 	public Calculator()
 	{
 		// Establecer la distribuci�n con 4 filas y 4 columnas
@@ -57,7 +57,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		resultado.setLayout(new GridLayout(1,2));
 		//He añadido otro panel para el boton de borrar
 		borrado.setLayout(new GridLayout(1,1));
-		
+
 		setLayout (new BorderLayout());
 		setTitle("Calculator");
 		//añado el boton AC
@@ -120,19 +120,19 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		new Calculator();
 	}
 	// Fin del main
-	
-	
+
+
 	@Override
 	public void windowActivated(WindowEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void windowClosed(WindowEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void windowClosing(WindowEvent arg0)
@@ -148,34 +148,37 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	public void windowDeactivated(WindowEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void windowDeiconified(WindowEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void windowIconified(WindowEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 	@Override
 	public void windowOpened(WindowEvent arg0)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	public void actionPerformed(ActionEvent Cal)
-	{	
+	{	try
+	{
+
+
 		float resultado=0;
-		 if(btnBoton1.equals(Cal.getSource()))
+		if(btnBoton1.equals(Cal.getSource()))
 		{
 			txtCampo1.setText(txtCampo1.getText()+"1");
-			
+
 		}
 		else if (btnBoton2.equals(Cal.getSource()))
 		{
@@ -186,11 +189,11 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 			txtCampo1.setText(txtCampo1.getText()+"3");
 		}
 		else if (btnBotonMas.equals(Cal.getSource()))
-			{
+		{
 			operacion=0;
 			numero1=(Float.parseFloat(txtCampo1.getText()));
 			txtCampo1.setText("");
-			}
+		}
 		else if (btnBoton4.equals(Cal.getSource()))
 		{
 			txtCampo1.setText(txtCampo1.getText()+"4");
@@ -249,6 +252,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 			case 1:
 				resultado=numero1-numero2;
 				txtCampo1.setText(Float.toString(resultado));
+
 				break;
 			case 2:
 				resultado=numero1*numero2;
@@ -259,7 +263,7 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 				txtCampo1.setText(Float.toString(resultado));
 				break;
 			}
-						
+
 		}
 		else if (btnBoton0.equals(Cal.getSource()))
 		{
@@ -273,8 +277,13 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 		{
 			lblEtiqueta.setText("Pruebas");
 		}
-		
+	}
+	catch (NumberFormatException e)
+	{
+		txtCampo1.setText("");
+	}
 	}
 }
+
 
 
