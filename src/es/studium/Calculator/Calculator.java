@@ -137,12 +137,11 @@ public class Calculator extends Frame implements WindowListener, ActionListener
 	@Override
 	public void windowClosing(WindowEvent arg0)
 	{
-		//Refactorizado de la salida con un syso
-		Salida();
+			
 		System.exit(0);
 	}
 	public void Salida() {
-		System.out.println("Dale a las Xx de la consola");
+		
 	}
 	@Override
 	public void windowDeactivated(WindowEvent arg0)
